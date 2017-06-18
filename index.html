@@ -3,55 +3,57 @@
 <head>
   <meta charset="utf-8">
   <title>Guessing Game</title>
+
+  <!-- Bootstrap and CSS here-->
   <link rel="stylesheet" href="./styles/main.css">
 </head>
 <body>
-  <div id="app">
+  <div id="app" class="center">
     <header id="headers">
       <!-- Title and subtitles! -->
-      <hgroup>
         <h1 id="title">Play the Guessing Game</h1>
-        <h2 id="subtitle">Guess a number between 1-1000!</h2>
-      </hgroup>
+        <h3 id="subtitle">Guess a number between 1-1000!</h3>
     </header>
 
-    <main id="main">
+    <div id="main">
       <div id="input-parent">
         <!-- Player's guess input, and submit button -->
-        <input type="number" name="input"  placeholder="Enter a number" maxlength="3" autofocus>
+        <input id="players-input"  placeholder="Enter a number" type="number" maxlength="3" autofocus>
         <button id="submit">Go!</button>
       </div>
 
-      <aside id="guesses">
+      <div id="guesses">
         <!-- unordered list of guesses -->
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
+        <ul id="guess-list">
+          <li class="guess"></li>
+          <li class="guess"></li>
+          <li class="guess"></li>
+          <li class="guess"></li>
+          <li class="guess"></li>
         </ul>
-      </aside>
+      </div>
 
       <div id="menu-btns">
         <!-- reset and hint buttons -->
         <button id="reset">Reset</button>
         <button id="hint">Hint</button>
       </div>
-    </main>
+    </div>
   </div>
 
-  <footer id="footer">
+  <footer id="footer" class="center">
     <div>
-      <figure class="">
+      <div class="">
         <img src="images/fsa-logo.png" alt="Fullstack Academy logo"></img>
-      </figure>
+      </div>
 
-      <div class="center">
+      <div>
         <h4>Project by BURCU NOYAN</h4>
       </div>
 
-      <figure class="">
+      <div class="">
         <img src="images/gh-logo.png" alt="Grace Hopper Academy logo"></img>
-      </figure>
+      </div>
     </div>
   </footer>
 </body>
