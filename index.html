@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>Guessing Game</title>
-
   <!-- Bootstrap and CSS here-->
   <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id="app" class="center">
-    <header id="header">
+  <div id="app" class="container center">
+    <header id="headers">
       <!-- Title and subtitles! -->
         <h1 id="title">Play the Guessing Game</h1>
         <h3 id="subtitle">Guess a number between 1-1000!</h3>
@@ -18,40 +19,40 @@
     <div id="main">
       <div id="input-parent">
         <!-- Player's guess input, and submit button -->
-        <input id="player-input"  placeholder="Enter a number" type="number" maxlength="3" autofocus>
-        <button id="submit">Go!</button>
+        <input id="players-input" class="form-control" placeholder="Enter a number" maxlength="3" autofocus>
+        <button id="submit" class="btn btn-success">Go!</button>
       </div>
 
       <div id="guesses">
         <!-- unordered list of guesses -->
         <ul id="guess-list">
-          <li class="guess"></li>
-          <li class="guess"></li>
-          <li class="guess"></li>
-          <li class="guess"></li>
-          <li class="guess"></li>
+          <li class="guess">-</li>
+          <li class="guess">-</li>
+          <li class="guess">-</li>
+          <li class="guess">-</li>
+          <li class="guess">-</li>
         </ul>
       </div>
 
       <div id="menu-btns">
         <!-- reset and hint buttons -->
-        <button id="reset">Reset</button>
-        <button id="hint">Hint</button>
+        <button id="reset" class="btn btn-warning">Reset</button>
+        <button id="hint" class="btn btn-info">Hint</button>
       </div>
     </div>
   </div>
 
   <footer id="footer" class="center">
-    <div>
-      <div class="">
+    <div class="row">
+      <div class="col-sm-4">
         <img src="images/fsa-logo.png" alt="Fullstack Academy logo"></img>
       </div>
 
-      <div>
+      <div class="col-sm-4">
         <h4>Project by BURCU NOYAN</h4>
       </div>
 
-      <div class="">
+      <div class="col-sm-4">
         <img src="images/gh-logo.png" alt="Grace Hopper Academy logo"></img>
       </div>
     </div>
