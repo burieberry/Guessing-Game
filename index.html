@@ -29,33 +29,38 @@
 
 </head>
 <body>
-  <section id="app">
+  <div id="app">
     <header id="headers">
       <!-- Title and subtitles! -->
       <hgroup>
-        <h1>Play the Guessing Game</h1>
-        <h2>Guess a number between 1-1000!</h2>
+        <h1 id="title">Play the Guessing Game</h1>
+        <h2 id="subtitle">Guess a number between 1-1000!</h2>
       </hgroup>
     </header>
 
-    <section id="main">
+    <main id="main">
       <div id="input-parent">
         <!-- Player's guess input, and submit button -->
-        <input type="number" name="input"  placeholder="Enter a number" maxlength="4" autofocus>
+        <input type="number" name="input"  placeholder="Enter a number" maxlength="3" autofocus>
         <button id="submit">Go!</button>
       </div>
 
-      <ul id="guesses">
+      <aside id="guesses">
         <!-- unordered list of guesses -->
-      </ul>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </aside>
 
-      <aside id="menu-btns">
+      <div id="menu-btns">
         <!-- reset and hint buttons -->
         <button id="reset">Reset</button>
         <button id="hint">Hint</button>
-      </aside>
-    </section>
-  </section>
+      </div>
+    </main>
+  </div>
 
   <footer id="footer">
     <div>
@@ -64,7 +69,7 @@
       </figure>
 
       <div class="center">
-        <h4>Project by Burcu Noyan</h4>
+        <h4>Project by BURCU NOYAN</h4>
       </div>
 
       <figure class="">
