@@ -1,19 +1,40 @@
-.center {
-  text-align: center;
+html {
+  box-sizing: 'border-box';
 }
+
 ul {
   list-style: none;
   padding: 0;
 }
+
 img {
   display: inline;
-  width: 200px;
-  height: 100px;
+  width: 160px;
 }
+
+#header {
+  margin-top: 10%;
+}
+
 #footer {
   width: 100%;
   border-top: solid 2px black;
   background-color: white;
   position: fixed;
   bottom: 0;
+}
+
+#submit {
+  margin: 10px;
+}
+
+#input-parent {
+
+  margin: 0 auto;
+  width: 160px;
+}
+
+
+.center {
+  text-align: center;
 }
