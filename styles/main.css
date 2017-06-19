@@ -11,6 +11,13 @@ body {
   height: 100%;
 }
 
+body {
+  background: url('../images/cube-bg.jpg') 70% 50% no-repeat;
+  background-size: cover;
+  font-family: 'Mako', sans-serif;
+  font-size: 18px;
+}
+
 img {
   display: inline;
   max-width: 160px;
@@ -23,8 +30,8 @@ ul {
 }
 
 #app {
-  background: url('../images/cube-bg.jpg') 50% 50% no-repeat;
-  background-size: cover;
+  background-color: rgba(256, 256, 256, .1);
+  margin: 0 auto;
   min-height: 100%;
   width: 100%;
 }
@@ -47,6 +54,7 @@ ul {
 
 #subtitle {
   font-family: 'Mako', sans-serif;
+  font-size: 30px;
 }
 
 /* Player Input */
@@ -59,6 +67,7 @@ ul {
 
 #player-input {
   border-radius: 50%;
+  box-shadow: 2px 2px 2px #999;
   font-size: 4em;
   height: 160px;
   width: 160px;
@@ -87,7 +96,7 @@ ul {
 .guess {
   background-color: rgba(255, 255, 255, .8);
   display: inline;
-  font-size: 3em;
+  font-size: 40px;
   padding: 0 20px;
   border: 1px solid #999;
   border-radius: 10%;
@@ -97,37 +106,39 @@ ul {
 /* Footer */
 
 #credit-block {
-  margin-top: 15px;
-}
-
-#credit {
-  font-size: 1em;
-}
-
-#footer {
-  width: 100%;
-  border-top: solid 2px #000;
-  background-color: rgba(255, 255, 255, .6);
-  position: fixed;
-  bottom: 0;
-}
-
-#fs-logo {
   margin-top: 10px;
 }
 
+#credit {
+  font-family: 'Bungee Inline', cursive;
+  font-size: 14px;
+}
+
+#footer {
+  background-color: rgba(255, 255, 255, .6);
+  border-top: solid 2px #000;
+  bottom: 0;
+  height: 56px;
+  position: fixed;
+  width: 100%;
+}
+
+#fs-logo {
+  /*margin-top: 10px;*/
+}
+
 #gh-logo {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 
 @media screen and (max-width: 414px) {
   #title {
-    font-size: 30px;
+    font-size: 48px;
   }
 
-  #app {
-    background-position: 70% 50%;
+  #subtitle {
+    font-size: 20px;
   }
 
   #input-parent {
@@ -144,8 +155,8 @@ ul {
   }
 
   .guess {
-    font-size: 2em;
-    padding: 0 10px;
+    font-size: 30px;
+    padding: 0 15px;
   }
 
   #footer {
