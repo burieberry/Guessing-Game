@@ -54,7 +54,7 @@ Game.prototype.checkGuess = function() {
   else if (this.pastGuesses.includes(this.playersGuess))
     return 'You have already guessed that number.';
 
-  else  {
+  else {
     this.pastGuesses.push(this.playersGuess);
     var diff = this.difference();
 
@@ -65,7 +65,7 @@ Game.prototype.checkGuess = function() {
       else return 'You\'re ice cold!';
     }
     else
-      return 'You Lose. The number was ' + this.winningNumber;
+      return 'You Lose. The number was ' + this.winningNumber + '.';
   }
 };
 
@@ -75,24 +75,26 @@ Game.prototype.provideHint = function() {
   return shuffle(hintArr);
 }
 
-// jQuery code
 
+function submitGuess(game) {
+  game.playersGuess = $('#player-input').val();
+  $('#player-input').val('');
+  var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
+  console.log(guessResult);
+}
+
+// jQuery code
 $(document).ready(function() {
   // load new game
   var guessingGame = newGame();
 
-  function submitGuess() {
-    guessingGame.playersGuess = Number($('#player-input').val());
-    var guessResult = guessingGame.playersGuessSubmission(guessingGame.playersGuess);
-    console.log(guessingGame.playersGuess, guessResult);
-    $('#player-input').val = null;
-  }
-
-  $('#submit').click(submitGuess);
+  $('#submit').click(function() {
+    submitGuess(guessingGame);
+  });
 
   $(document).keypress(function(e) {
     if (e.keyCode == 13) {
-      submitGuess();
+      submitGuess(guessingGame);
     }
   });
 });
