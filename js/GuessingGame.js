@@ -1,27 +1,3 @@
-function generateWinningNumber() {
-  return Math.floor(Math.random() * 100 + 1);
-}
-
-function shuffle(arr) {
-  var m = arr.length,
-      t,
-      i;
-
-  while(m) {
-    i = Math.floor(Math.random() * m--);
-    t = arr[m];
-    arr[m] = arr[i];
-    arr[i] = t;
-  }
-
-  return arr;
-}
-
-function newGame() {
-  return new Game();
-}
-
-
 // Game constructor function and methods:
 
 var Game = function() {
@@ -75,6 +51,31 @@ Game.prototype.provideHint = function() {
   return shuffle(hintArr);
 }
 
+
+// other functions:
+
+function generateWinningNumber() {
+  return Math.floor(Math.random() * 100 + 1);
+}
+
+function shuffle(arr) {
+  var m = arr.length,
+      t,
+      i;
+
+  while(m) {
+    i = Math.floor(Math.random() * m--);
+    t = arr[m];
+    arr[m] = arr[i];
+    arr[i] = t;
+  }
+
+  return arr;
+}
+
+function newGame() {
+  return new Game();
+}
 
 function submitGuess(game) {
   game.playersGuess = $('#player-input').val();
