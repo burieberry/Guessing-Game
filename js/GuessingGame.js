@@ -64,20 +64,35 @@ Game.prototype.checkGuess = function() {
       else if (diff < 50) return 'You\'re a bit chilly.';
       else return 'You\'re ice cold!';
     }
-    else return 'You Lose.';
+    else
+      return 'You Lose. The number was ' + this.winningNumber;
   }
 };
 
 Game.prototype.provideHint = function() {
   var hintArr = [this.winningNumber, generateWinningNumber(), generateWinningNumber()];
+  console.log(hintArr);
   return shuffle(hintArr);
 }
 
 // jQuery code
 
 $(document).ready(function() {
-  $('#submit').click(function() {
-    console.log('Submit button is clicked.');
+  // load new game
+  var guessingGame = newGame();
+
+  function submitGuess() {
+    guessingGame.playersGuess = Number($('#player-input').val());
+    var guessResult = guessingGame.playersGuessSubmission(guessingGame.playersGuess);
+    console.log(guessingGame.playersGuess, guessResult);
+    $('#player-input').val = null;
+  }
+
+  $('#submit').click(submitGuess);
+
+  $(document).keypress(function(e) {
+    if (e.keyCode == 13) {
+      submitGuess();
+    }
   });
 });
-
