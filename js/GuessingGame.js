@@ -29,8 +29,11 @@ Game.prototype.checkGuess = function() {
       loseMessage = 'You Lose.';
 
   if (this.playersGuess === this.winningNumber) {
+    // TODO: REFACTOR
     $('#title').text(winMessage);
     $('#subtitle').text(resetMessage);
+    $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
+    $('#guess-list').children('li').last().remove();
     return winMessage;
   }
 
@@ -44,6 +47,8 @@ Game.prototype.checkGuess = function() {
     var diff = this.difference();
 
     if (this.pastGuesses.length < 5) {
+      $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
+      $('#guess-list').children('li').last().remove();
       if (diff < 10) return 'You\'re burning up!';
       else if (diff < 25) return 'You\'re lukewarm.';
       else if (diff < 50) return 'You\'re a bit chilly.';
@@ -52,6 +57,8 @@ Game.prototype.checkGuess = function() {
     else {
       $('#title').text(loseMessage);
       $('#subtitle').text(resetMessage);
+      $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
+      $('#guess-list').children('li').last().remove();
       return loseMessage + ' The number was ' + this.winningNumber + '.';
     }
   }
