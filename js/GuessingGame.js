@@ -27,8 +27,9 @@ Game.prototype.checkGuess = function() {
   if (this.playersGuess === this.winningNumber)
     return 'You Win!';
 
-  else if (this.pastGuesses.includes(this.playersGuess))
+  else if (this.pastGuesses.includes(this.playersGuess)) {
     return 'You have already guessed that number.';
+  }
 
   else {
     this.pastGuesses.push(this.playersGuess);
@@ -94,7 +95,7 @@ $(document).ready(function() {
   });
 
   $(document).keypress(function(e) {
-    if (e.keyCode == 13) {
+    if (e.which == 13) {
       submitGuess(guessingGame);
     }
   });
