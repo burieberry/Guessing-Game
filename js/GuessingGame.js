@@ -24,10 +24,18 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.checkGuess = function() {
-  if (this.playersGuess === this.winningNumber)
-    return 'You Win!';
+  var resetMessage = 'Click the Reset button to play again.',
+      winMessage = 'You Win!',
+      loseMessage = 'You Lose.';
+
+  if (this.playersGuess === this.winningNumber) {
+    $('#title').text(winMessage);
+    $('#subtitle').text(resetMessage);
+    return winMessage;
+  }
 
   else if (this.pastGuesses.includes(this.playersGuess)) {
+    $('#title').text('Guess again!');
     return 'You have already guessed that number.';
   }
 
@@ -41,8 +49,11 @@ Game.prototype.checkGuess = function() {
       else if (diff < 50) return 'You\'re a bit chilly.';
       else return 'You\'re ice cold!';
     }
-    else
-      return 'You Lose. The number was ' + this.winningNumber + '.';
+    else {
+      $('#title').text(loseMessage);
+      $('#subtitle').text(resetMessage);
+      return loseMessage + ' The number was ' + this.winningNumber + '.';
+    }
   }
 };
 
