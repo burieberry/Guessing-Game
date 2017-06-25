@@ -28,6 +28,7 @@ Game.prototype.checkGuess = function() {
   if (this.playersGuess === this.winningNumber) {
     $('#submit, #hint').prop('disabled', true);
     $('#subtitle').text('Click the Reset button to play again.');
+    $('#player-input').prop('placeholder', this.playersGuess);
     return 'You Win!';
   }
 
@@ -104,6 +105,15 @@ $(document).ready(function() {
     if (e.which == 13 && !$('#submit').prop('disabled')) {
       submitGuess(guessingGame);
     }
+  });
+
+  $('#reset').click(function() {
+    $('#submit, #hint').prop('disabled', false);
+    $('#title').text('Play the Guessing Game');
+    $('#subtitle').text('Guess a number between 1-100!');
+    $('#player-input').prop('placeholder', '#');
+    $('#guess-list li').text('-');
+    return guessingGame = newGame();
   });
 });
 
