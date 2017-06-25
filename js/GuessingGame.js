@@ -24,43 +24,36 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.checkGuess = function() {
-  var resetMessage = 'Click the Reset button to play again.',
+  var guess = this.playersGuess,
       winMessage = 'You Win!',
       loseMessage = 'You Lose.';
 
-  if (this.playersGuess === this.winningNumber) {
-    // TODO: REFACTOR
-    $('#title').text(winMessage);
-    $('#subtitle').text(resetMessage);
-    $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
-    $('#guess-list').children('li').last().remove();
-    $('#submit, #hint').prop('disabled', true);
+  console.log(this.winningNumber);
+
+  if (guess === this.winningNumber) {
+    styleGuessList(guess, winMessage);
     return winMessage;
   }
 
-  else if (this.pastGuesses.includes(this.playersGuess)) {
+  else if (this.pastGuesses.includes(guess)) {
     $('#title').text('Guess again!');
     return 'You have already guessed that number.';
   }
 
   else {
-    this.pastGuesses.push(this.playersGuess);
+    this.pastGuesses.push(guess);
     var diff = this.difference();
 
     if (this.pastGuesses.length < 5) {
-      $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
-      $('#guess-list').children('li').last().remove();
+      styleGuessList(guess);
+
       if (diff < 10) return 'You\'re burning up!';
       else if (diff < 25) return 'You\'re lukewarm.';
       else if (diff < 50) return 'You\'re a bit chilly.';
       else return 'You\'re ice cold!';
     }
     else {
-      $('#title').text(loseMessage);
-      $('#subtitle').text(resetMessage);
-      $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
-      $('#guess-list').children('li').last().remove();
-      $('#submit, #hint').prop('disabled', true);
+      styleGuessList(guess, loseMessage);
       return loseMessage + ' The number was ' + this.winningNumber + '.';
     }
   }
@@ -103,6 +96,17 @@ function submitGuess(game) {
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
   console.log(guessResult);
+}
+
+function styleGuessList(guess, result) {
+  $('#guess-list').append('<li class="guess">' + guess + '</li>');
+  $('.guess').first().remove();
+
+  if (result) {
+    $('#title').text(result);
+    $('#subtitle').text('Click the Reset button to play again.');
+    $('#submit, #hint').prop('disabled', true);
+  }
 }
 
 // jQuery code
