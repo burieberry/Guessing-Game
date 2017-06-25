@@ -16,9 +16,10 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(num) {
-  // TODO: this still allows NaN values
-  if (num < 1 || num > 100 || typeof num !== 'number')
+  if (num < 1 || num > 100 || isNaN(num)) {
+    $('#subtitle').text('That is an invalid guess. Enter a number between 1-100.');
     throw 'That is an invalid guess.';
+  }
   else {
     this.playersGuess = num;
     return this.checkGuess();
