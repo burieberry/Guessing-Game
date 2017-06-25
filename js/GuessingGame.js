@@ -24,17 +24,13 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.checkGuess = function() {
-  var guess = this.playersGuess,
-      winMessage = 'You Win!',
-      loseMessage = 'You Lose.';
+  var guess = this.playersGuess;
 
   if (guess === this.winningNumber) {
-    styleGuessList(guess, winMessage);
-    return winMessage;
+    return 'You Win!';
   }
 
   else if (this.pastGuesses.includes(guess)) {
-    $('#title').text('Guess again!');
     return 'You have already guessed that number.';
   }
 
@@ -43,16 +39,13 @@ Game.prototype.checkGuess = function() {
     var diff = this.difference();
 
     if (this.pastGuesses.length < 5) {
-      styleGuessList(guess);
-
       if (diff < 10) return 'You\'re burning up!';
       else if (diff < 25) return 'You\'re lukewarm.';
       else if (diff < 50) return 'You\'re a bit chilly.';
       else return 'You\'re ice cold!';
     }
     else {
-      styleGuessList(guess, loseMessage);
-      return loseMessage + ' The number was ' + this.winningNumber + '.';
+      return 'You Lose.';
     }
   }
 };
@@ -111,15 +104,22 @@ function submitGuess(game) {
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
   console.log(guessResult);
+  addToGuessList(game.playersGuess, guessResult);
 }
 
-function styleGuessList(guess, result) {
-  $('#guess-list').append('<li class="guess">' + guess + '</li>');
-  $('.guess').first().remove();
+function addToGuessList(guess, result) {
+  if (result === 'You have already guessed that number.') {
+    $('#title').text('Guess again!');
+  }
 
-  if (result) {
-    $('#title').text(result);
-    $('#subtitle').text('Click the Reset button to play again.');
-    $('#submit, #hint').prop('disabled', true);
+  else {
+    $('#guess-list').append('<li class="guess">' + guess + '</li>');
+    $('.guess').first().remove();
+
+    if (result === 'You Win!' || result === 'You Lose.') {
+      $('#title').text(result);
+      $('#subtitle').text('Click the Reset button to play again.');
+      $('#submit, #hint').prop('disabled', true);
+    }
   }
 }
