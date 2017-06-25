@@ -95,11 +95,12 @@ ul {
 
 .guess {
   background-color: rgba(255, 255, 255, .8);
+  border: 1px solid #999;
+  border-radius: 10%;
   display: inline;
   font-size: 40px;
   padding: 0 20px;
-  border: 1px solid #999;
-  border-radius: 10%;
+  margin: 0 5px;
 }
 
 
