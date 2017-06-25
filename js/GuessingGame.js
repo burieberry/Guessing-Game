@@ -28,13 +28,14 @@ Game.prototype.playersGuessSubmission = function(num) {
 Game.prototype.checkGuess = function() {
   if (this.playersGuess === this.winningNumber) {
     $('#submit, #hint').prop('disabled', true);
-    $('#subtitle').text('Click the Reset button to play again.');
+    $('#directions').text('Click the Reset button to play again.');
     $('#player-input').prop('placeholder', this.playersGuess);
-    return 'You Win!';
+    $('#title').text('YOU WIN!');
+    return 'The winning number is ' + this.winningNumber + '!';
   }
 
   else if (this.pastGuesses.includes(this.playersGuess)) {
-    $('#subtitle').text('You have already guessed that number.');
+    $('#directions').text('You have already guessed that number.');
     return 'Guess again!';
   }
 
@@ -44,18 +45,19 @@ Game.prototype.checkGuess = function() {
 
     if (this.pastGuesses.length < 5) {
       var direction = this.isLower() ? 'Guess higher.' : 'Guess lower.';
-      $('#subtitle').text(direction);
+      $('#directions').text(direction);
 
       var diff = this.difference();
-      if (diff < 10) return 'You\'re burning up!';
-      else if (diff < 25) return 'You\'re lukewarm.';
-      else if (diff < 50) return 'You\'re a bit chilly.';
-      else return 'You\'re ice cold!';
+      if (diff < 10) return 'You\'re burning up! Less than 10 numbers away.';
+      else if (diff < 25) return 'You\'re lukewarm. Less than 25 numbers away.';
+      else if (diff < 50) return 'You\'re a bit chilly. Less than 50 numbers away.';
+      else return 'You\'re ice cold! Away more than 50 numbers.';
     }
     else {
       $('#submit, #hint').prop('disabled', true);
-      $('#subtitle').text('Click the Reset button to play again.');
-      return 'You Lose.';
+      $('#directions').text('Click the Reset button to play again.');
+      $('#title').text('YOU LOSE.');
+      return 'The winning number was ' + this.winningNumber + '.';
     }
   }
 };
@@ -112,6 +114,7 @@ $(document).ready(function() {
     $('#submit, #hint').prop('disabled', false);
     $('#title').text('Play the Guessing Game');
     $('#subtitle').text('Guess a number between 1-100!');
+    $('#directions').text('You get to have 1 hint.');
     $('#player-input').prop('placeholder', '#');
     $('.guess').text('-');
     guessingGame = newGame();
@@ -119,7 +122,7 @@ $(document).ready(function() {
 
   $('#hint').click(function() {
     var hint = guessingGame.provideHint();
-    $('#title').text('Hint: ' + hint[0] + ', ' + hint[1] + ', ' + hint[2]);
+    $('#directions').text('Remember these! The winning number is ' + hint[0] + ', ' + hint[1] + ', or ' + hint[2] + '.');
     $('#hint').prop('disabled', true);
   });
 });
@@ -128,5 +131,5 @@ function submitGuess(game) {
   game.playersGuess = $('#player-input').val();
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
-  $('#title').text(guessResult);
+  $('#subtitle').text(guessResult);
 }
