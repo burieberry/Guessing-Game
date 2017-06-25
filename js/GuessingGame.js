@@ -4,6 +4,7 @@ var Game = function() {
   this.playersGuess = null;
   this.pastGuesses = [];
   this.winningNumber = generateWinningNumber();
+  console.log('winning num: ' + this.winningNumber);
 };
 
 Game.prototype.difference = function() {
@@ -42,7 +43,7 @@ Game.prototype.checkGuess = function() {
     $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
 
     if (this.pastGuesses.length < 5) {
-      var direction = this.isLower() ? 'Make a higher guess.' : 'Make a lower guess.';
+      var direction = this.isLower() ? 'Guess higher.' : 'Guess lower.';
       $('#subtitle').text(direction);
 
       var diff = this.difference();
@@ -114,6 +115,11 @@ $(document).ready(function() {
     $('#player-input').prop('placeholder', '#');
     $('#guess-list li').text('-');
     return guessingGame = newGame();
+  });
+
+  $('#hint').click(function() {
+    var hint = guessingGame.provideHint();
+    $('#title').text(hint);
   });
 });
 
