@@ -15,7 +15,7 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(num) {
-  if (num < 1 || num >= 100 || typeof num !== 'number')
+  if (num < 1 || num > 100 || typeof num !== 'number')
     throw 'That is an invalid guess.';
   else {
     this.playersGuess = num;
@@ -125,8 +125,8 @@ function addToGuessList(guess, result, game) {
     }
 
     else {
-      var direction;
-      $('#directions').text(result);
+      var direction = game.isLower() ? 'Make a higher guess.' : 'Make a lower guess.';
+      $('#directions').text(result + ' ' + direction);
     }
   }
 }
