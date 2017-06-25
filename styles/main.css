@@ -1,11 +1,9 @@
-
-
 html,
 body {
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
   height: 100%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
 }
 
 body {
@@ -27,10 +25,10 @@ ul {
 }
 
 #app {
-  background-color: rgba(256, 256, 256, .1);
-  margin: 0 auto;
-  min-height: 100%;
-  width: 100%;
+  background-color: rgba(255, 245, 238, .3);
+  margin: 30px auto 56px;
+  max-width: 1040px;
+  padding: 20px;
 }
 
 .btn {
@@ -47,21 +45,24 @@ ul {
 #title {
   font-family: 'Bungee Inline', cursive;
   font-size: 70px;
+  margin: 10px;
 }
 
 #subtitle {
   font-size: 30px;
+  margin: 10px;
 }
 
 #directions {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: lighter;
+  margin: 20px;
 }
 
 /* Player Input */
 
 #input-parent {
-  margin: 50px auto 30px;
+  margin: 30px auto;
   position: relative;
   width: 160px;
 }
@@ -87,7 +88,7 @@ ul {
 /* Guess List */
 
 #guess-list {
-  margin: 50px 0 25px;
+  margin: 30px 0;
 }
 
 #guesses {
@@ -134,17 +135,28 @@ ul {
 }
 
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 700px) {
+  #app {
+    background-color: rgba(255, 240, 245, .2);
+    margin: 0 auto 50px;
+    min-height: 100%;
+    padding: 20px 0 0;
+  }
+
   #title {
     font-size: 48px;
+    margin: 10px 20px;
   }
 
   #subtitle {
-    font-size: 20px;
+    font-size: 22px;
+    margin: 10px 20px;
   }
 
-  #input-parent {
-    margin: 30px auto 10px;
+  #directions {
+    font-size: 16px;
+    font-weight: bolder;
+    margin: 0 30px 20px;
   }
 
   #player-input {
@@ -152,13 +164,22 @@ ul {
     height: 140px;
   }
 
+  #input-parent {
+    margin: 0 auto;
+  }
+
+  #guesses {
+    margin: 25px 0 10px;
+  }
+
   #guess-list {
-    margin: 30px 0 15px;
+    margin: 0;
   }
 
   .guess {
     font-size: 30px;
     padding: 0 15px;
+    margin: 0 2px;
   }
 
   #footer {
