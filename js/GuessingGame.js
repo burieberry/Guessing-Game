@@ -34,7 +34,7 @@ Game.prototype.checkGuess = function() {
     $('#subtitle').text(resetMessage);
     $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
     $('#guess-list').children('li').last().remove();
-    $('#submit').prop('disabled', true);
+    $('#submit, #hint').prop('disabled', true);
     return winMessage;
   }
 
@@ -60,7 +60,7 @@ Game.prototype.checkGuess = function() {
       $('#subtitle').text(resetMessage);
       $('#guess-list').prepend('<li class="guess">' + this.playersGuess + '</li>');
       $('#guess-list').children('li').last().remove();
-      $('#submit').prop('disabled', true);
+      $('#submit, #hint').prop('disabled', true);
       return loseMessage + ' The number was ' + this.winningNumber + '.';
     }
   }
