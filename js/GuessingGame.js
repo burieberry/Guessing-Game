@@ -104,10 +104,10 @@ function submitGuess(game) {
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
   console.log(guessResult);
-  addToGuessList(game.playersGuess, guessResult, game);
+  displayGuessInfo(game.playersGuess, guessResult, game);
 }
 
-function addToGuessList(guess, result, game) {
+function displayGuessInfo(guess, result, game) {
   if (result === 'You have already guessed that number.') {
     $('#title').text('Guess again!');
     $('#directions').text(result);
