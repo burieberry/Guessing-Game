@@ -15,6 +15,7 @@ Game.prototype.isLower = function() {
 };
 
 Game.prototype.playersGuessSubmission = function(num) {
+  // TODO: this still allows NaN values
   if (num < 1 || num > 100 || typeof num !== 'number')
     throw 'That is an invalid guess.';
   else {
@@ -24,27 +25,34 @@ Game.prototype.playersGuessSubmission = function(num) {
 };
 
 Game.prototype.checkGuess = function() {
-  var guess = this.playersGuess;
-
-  if (guess === this.winningNumber) {
+  if (this.playersGuess === this.winningNumber) {
+    $('#submit, #hint').prop('disabled', true);
+    $('#subtitle').text('Click the Reset button to play again.');
     return 'You Win!';
   }
 
-  else if (this.pastGuesses.includes(guess)) {
-    return 'You have already guessed that number.';
+  else if (this.pastGuesses.includes(this.playersGuess)) {
+    $('#subtitle').text('You have already guessed that number.');
+    return 'Guess again!';
   }
 
   else {
-    this.pastGuesses.push(guess);
-    var diff = this.difference();
+    this.pastGuesses.push(this.playersGuess);
+    $('#guess-list li:nth-child(' + this.pastGuesses.length + ')').text(this.playersGuess);
 
     if (this.pastGuesses.length < 5) {
+      var direction = this.isLower() ? 'Make a higher guess.' : 'Make a lower guess.';
+      $('#subtitle').text(direction);
+
+      var diff = this.difference();
       if (diff < 10) return 'You\'re burning up!';
       else if (diff < 25) return 'You\'re lukewarm.';
       else if (diff < 50) return 'You\'re a bit chilly.';
       else return 'You\'re ice cold!';
     }
     else {
+      $('#submit, #hint').prop('disabled', true);
+      $('#subtitle').text('Click the Reset button to play again.');
       return 'You Lose.';
     }
   }
@@ -103,30 +111,5 @@ function submitGuess(game) {
   game.playersGuess = $('#player-input').val();
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
-  console.log(guessResult);
-  displayGuessInfo(game.playersGuess, guessResult, game);
-}
-
-function displayGuessInfo(guess, result, game) {
-  if (result === 'You have already guessed that number.') {
-    $('#title').text('Guess again!');
-    $('#directions').text(result);
-  }
-
-  else {
-    $('#guess-list').append('<li class="guess">' + guess + '</li>');
-    $('.guess').first().remove();
-
-    if (result === 'You Win!' || result === 'You Lose.') {
-      $('#title').text(result);
-      $('#subtitle').text('Click the Reset button to play again.');
-      $('#directions').text('The number was ' + game.winningNumber + '.');
-      $('#submit, #hint').prop('disabled', true);
-    }
-
-    else {
-      var direction = game.isLower() ? 'Make a higher guess.' : 'Make a lower guess.';
-      $('#directions').text(result + ' ' + direction);
-    }
-  }
+  $('#title').text(guessResult);
 }
