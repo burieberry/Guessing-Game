@@ -28,8 +28,6 @@ Game.prototype.checkGuess = function() {
       winMessage = 'You Win!',
       loseMessage = 'You Lose.';
 
-  console.log(this.winningNumber);
-
   if (guess === this.winningNumber) {
     styleGuessList(guess, winMessage);
     return winMessage;
@@ -91,6 +89,23 @@ function newGame() {
   return new Game();
 }
 
+// jQuery additions
+
+$(document).ready(function() {
+  // load new game
+  var guessingGame = newGame();
+
+  $('#submit').click(function() {
+    submitGuess(guessingGame);
+  });
+
+  $(document).keypress(function(e) {
+    if (e.which == 13 && !$('#submit').prop('disabled')) {
+      submitGuess(guessingGame);
+    }
+  });
+});
+
 function submitGuess(game) {
   game.playersGuess = $('#player-input').val();
   $('#player-input').val('');
@@ -108,19 +123,3 @@ function styleGuessList(guess, result) {
     $('#submit, #hint').prop('disabled', true);
   }
 }
-
-// jQuery code
-$(document).ready(function() {
-  // load new game
-  var guessingGame = newGame();
-
-  $('#submit').click(function() {
-    submitGuess(guessingGame);
-  });
-
-  $(document).keypress(function(e) {
-    if (e.which == 13 && !$('#submit').prop('disabled')) {
-      submitGuess(guessingGame);
-    }
-  });
-});
