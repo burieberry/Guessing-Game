@@ -104,12 +104,13 @@ function submitGuess(game) {
   $('#player-input').val('');
   var guessResult = game.playersGuessSubmission(parseInt(game.playersGuess, 10));
   console.log(guessResult);
-  addToGuessList(game.playersGuess, guessResult);
+  addToGuessList(game.playersGuess, guessResult, game);
 }
 
-function addToGuessList(guess, result) {
+function addToGuessList(guess, result, game) {
   if (result === 'You have already guessed that number.') {
     $('#title').text('Guess again!');
+    $('#directions').text(result);
   }
 
   else {
@@ -119,7 +120,13 @@ function addToGuessList(guess, result) {
     if (result === 'You Win!' || result === 'You Lose.') {
       $('#title').text(result);
       $('#subtitle').text('Click the Reset button to play again.');
+      $('#directions').text('The number was ' + game.winningNumber + '.');
       $('#submit, #hint').prop('disabled', true);
+    }
+
+    else {
+      var direction;
+      $('#directions').text(result);
     }
   }
 }
