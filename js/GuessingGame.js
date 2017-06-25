@@ -30,7 +30,8 @@ Game.prototype.checkGuess = function() {
     $('#submit, #hint').prop('disabled', true);
     $('#directions').text('Click the Reset button to play again.');
     $('#player-input').prop('placeholder', this.playersGuess);
-    return 'The winning number is ' + this.winningNumber + '. YOU WIN!';
+    $('#title').text('YOU WIN!');
+    return 'The winning number is ' + this.winningNumber + '!';
   }
 
   else if (this.pastGuesses.includes(this.playersGuess)) {
@@ -55,7 +56,8 @@ Game.prototype.checkGuess = function() {
     else {
       $('#submit, #hint').prop('disabled', true);
       $('#directions').text('Click the Reset button to play again.');
-      return 'YOU LOSE. The winning number was ' + this.winningNumber + '.';
+      $('#title').text('YOU LOSE.');
+      return 'The winning number was ' + this.winningNumber + '.';
     }
   }
 };
@@ -111,7 +113,7 @@ $(document).ready(function() {
   $('#reset').click(function() {
     $('#submit, #hint').prop('disabled', false);
     $('#title').text('Play the Guessing Game');
-    $('#subtitle').text('Guess a number from 1 to 100!');
+    $('#subtitle').text('Guess a number between 1-100!');
     $('#directions').text('You get to have 1 hint.');
     $('#player-input').prop('placeholder', '#');
     $('.guess').text('-');
