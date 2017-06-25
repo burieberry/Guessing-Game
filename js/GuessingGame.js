@@ -113,8 +113,8 @@ $(document).ready(function() {
     $('#title').text('Play the Guessing Game');
     $('#subtitle').text('Guess a number between 1-100!');
     $('#player-input').prop('placeholder', '#');
-    $('#guess-list li').text('-');
-    return guessingGame = newGame();
+    $('.guess').text('-');
+    guessingGame = newGame();
   });
 
   $('#hint').click(function() {
