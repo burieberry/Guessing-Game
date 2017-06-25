@@ -112,6 +112,7 @@ $(document).ready(function() {
     $('#submit, #hint').prop('disabled', false);
     $('#title').text('Play the Guessing Game');
     $('#subtitle').text('Guess a number between 1-100!');
+    $('#directions').text('');
     $('#player-input').prop('placeholder', '#');
     $('.guess').text('-');
     guessingGame = newGame();
@@ -119,7 +120,7 @@ $(document).ready(function() {
 
   $('#hint').click(function() {
     var hint = guessingGame.provideHint();
-    $('#title').text('Hint: ' + hint[0] + ', ' + hint[1] + ', ' + hint[2]);
+    $('#directions').text('The winning number is ' + hint[0] + ', ' + hint[1] + ', or ' + hint[2]);
     $('#hint').prop('disabled', true);
   });
 });
