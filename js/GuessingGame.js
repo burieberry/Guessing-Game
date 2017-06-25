@@ -119,7 +119,7 @@ $(document).ready(function() {
 
   $('#hint').click(function() {
     var hint = guessingGame.provideHint();
-    $('#title').text(hint);
+    $('#title').text('Hint: ' + hint[0] + ', ' + hint[1] + ', ' + hint[2]);
     $('#hint').prop('disabled', true);
   });
 });
