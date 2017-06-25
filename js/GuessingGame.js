@@ -120,6 +120,7 @@ $(document).ready(function() {
   $('#hint').click(function() {
     var hint = guessingGame.provideHint();
     $('#title').text(hint);
+    $('#hint').prop('disabled', true);
   });
 });
 
