@@ -1,14 +1,11 @@
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
+
 
 html,
 body {
   height: 100%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 body {
@@ -53,8 +50,12 @@ ul {
 }
 
 #subtitle {
-  font-family: 'Mako', sans-serif;
   font-size: 30px;
+}
+
+#directions {
+  font-size: 36px;
+  font-weight: lighter;
 }
 
 /* Player Input */
